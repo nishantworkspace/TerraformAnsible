@@ -1,0 +1,23 @@
+- name: deploy web app
+  hosts: nginx
+  become: true
+  tasks:
+    - name: install nginx app
+      apt:
+        name: nginx
+    - name: copy over webapp
+      copy:
+        src: "html_demo_site-main"
+        dest: "/tmp/project_webapp"
+    - name: copy over nginx configuration
+      copy:
+        src: nginx-server.conf
+        dest: "/etc/nginx/conf.d"
+      notify:
+        - "restart nginx service"
+  handlers:
+    - name: "restart nginx service"
+      become: true
+      service:
+        name: nginx
+        state: restarted

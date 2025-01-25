@@ -1,0 +1,19 @@
+Open command prompt in this directory
+
+
+
+Install unzip utility
+sudo apt install -y unzip
+
+download the project web files
+wget https://github.com/do-community/html_demo_site/archive/refs/heads/main.zip
+
+unzip the project web files
+unzip main.zip
+
+Run the playbook 
+ansible-playbook -i inventory  project-playbook.yaml
+
+Access the application at below url:
+http://<your ubuntu server's public IP or DNS>:8080
+
